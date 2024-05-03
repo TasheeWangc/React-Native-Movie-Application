@@ -7,20 +7,20 @@ var {width,height}=Dimensions.get('window')
 
 const TrendingMovies = ({data}) => {
   const navigation = useNavigation();
-  const handleClick=()=>{
+  const handleClick=({item})=>{
     navigation.navigate('Movie',item)
   }
   return (
     <View className='md-8'>
-      <Text className='text-white text-xl mx-4 mb-5'>Trending</Text>
+      <Text className='text-white text-lg mx-4 mb-5'>Trending</Text>
       <Carousel
         data ={data}
-        renderItem={({item})=> <MovieCard item={item} handleClick={handleClick}/>}
+        renderItem={({item})=> <MovieCard item={item} handleClick={()=>handleClick(item)}/>}
         firstItem={1}
         inactiveSlideOpacity={0.6}
         sliderWidth={width}
         itemWidth={width*0.62}
-        slideStyle={{display:'flex',alignItems:'center',backgroundColor:'purple'}}
+        slideStyle={{display:'flex',alignItems:'center'}}
         />
     </View>
   )
@@ -34,7 +34,7 @@ const MovieCard=({item, handleClick})=>{
   return(
     <TouchableWithoutFeedback onPress={handleClick}>
       <Image
-          source={require('../assets/adaptive-icon.png')}
+          source={require('../assets/Antman.jpg')}
           style={{
             width:width*0.6,
             height:height*0.4
